@@ -19,6 +19,9 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
+      - name: Creating venv
+        run: uv venv
+        
       - name: Install dependencies
         run: uv pip install httpx lxml cssselect
 
