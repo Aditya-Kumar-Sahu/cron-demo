@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs at 18:10 UTC every day
     - cron: "10 18 * * *"
-  workflow_dispatch: # Allow manual triggers
+  workflow_dispatch: # Allows manual execution
 
 jobs:
   scrape-imdb:
@@ -18,15 +18,15 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
-   
+
       - name: Create virtual environment
         run: uv venv .venv
-     
+
       - name: Install dependencies
-        run: uv pip install --system httpx lxml cssselect
+        run: .venv/bin/uv pip install httpx lxml cssselect
 
       - name: Run scraper
-        run: uv venv python scrape.py
+        run: .venv/bin/python scrape.py
 
       - name: Commit and push changes
         env:
